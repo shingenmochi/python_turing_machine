@@ -1,0 +1,14 @@
+s0,0,Z,R,got_head
+s0,1,W,R,got_head
+got_head,0,0,R,got_head
+got_head,1,1,R,got_head
+got_head, , ,L,get_num
+get_num, , ,L,get_num
+get_num,0, ,R,got_0
+got_0, ,0,L,get_num
+get_num,1, ,R,got_1
+got_1, ,1,L,get_num
+get_num,Z, ,R,got_Z
+got_Z, ,0,L,fin
+get_num,W, ,R,got_W
+got_W, ,1,L,fin

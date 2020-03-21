@@ -1,0 +1,27 @@
+s0,0,W,R,head_detected
+s0,1,Z,R,head_detected
+head_detected,0,0,R,head_detected
+head_detected,1,1,R,head_detected
+head_detected,*,*,R,head_detected
+head_detected,=,=,R,head_detected
+head_detected, , ,L,search_equal
+search_equal,=,=,L,get_right
+get_right,Y,Y,L,get_right
+get_right,1,Y,L,got_right_1
+get_right,0,Y,L,got_right_0
+got_right_1,1,1,L,got_right_1
+got_right_1,0,0,L,got_right_1
+got_right_1,*,*,L,get_left_got_1
+got_right_0,1,1,L,got_right_0
+got_right_0,0,0,L,got_right_0
+got_right_0,*,*,L,get_left_got_0
+get_left_got_0,X,X,L,get_left_got_0
+get_left_got_0,0,X,R,return_0
+get_left_got_0,1,X,R,return_0
+get_left_got_1,X,X,L,get_left_got_1
+get_left_got_1,0,X,R,return_0
+get_left_got_0,W,X,R,return_0_end
+get_left_got_0,Z,X,R,return_0_end
+get_left_got_1,1,X,R,return_1
+get_left_got_1,W,X,R,return_0_end
+get_left_got_1,Z,X,R,return_1_end
