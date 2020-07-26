@@ -1,0 +1,5 @@
+s0,1,1,R,s0
+s0, , ,L,fin
+s0,0,0,R,check_0
+check_0,1,1,R,s0
+check_0, , ,L,fin

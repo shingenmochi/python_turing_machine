@@ -1,0 +1,16 @@
+s0,0,Y,R,s2
+s0,P,P,R,s5
+s2,0,0,R,s2
+s2,P,P,R,s2
+s2,1,P,R,s3
+s3,G,G,R,s3
+s3,1,1,R,s3
+s3,0,G,L,s4
+s4,0,0,L,s4
+s4,G,G,L,s4
+s4,1,1,L,s4
+s4,P,P,L,s4
+s4,Y,Y,R,s0
+s5,P,P,R,s5
+s5,G,G,R,s5
+s5, , ,L,fin
