@@ -29,7 +29,6 @@ class Machine():
         pass  # 移動しない
 
     def head_read(self):
-        # return self.tape.content[self.position]
         self.head_input = self.tape.content[self.position]
 
     def head_write(self, character):
@@ -63,19 +62,11 @@ class Machine():
             print('Accept!')
             exit()
         if (self.state, self.head_input) == (order.now, order.head_input):
-            # self.print_tape("start")
-            # tape_result = self.print_tape_with_position()
-            # print(tape_result + 'state:' + self.state + '\033[2E')
             self.head_write(order.head_output)
             self.print_tape()
-            # tape_result = self.print_tape_with_position()
-            # print(tape_result + 'state:' + self.state + '\033[2E')
             self.move[order.direction]()
-            # self.print_tape("move")
             self.change_state(order.next)
             self.print_tape()
-            # tape_result = self.print_tape_with_position()
-            # print(tape_result + 'state:' + self.state + '\033[2E')
             return 0
 
 
@@ -100,10 +91,7 @@ def load_order(order_file):
 
 
 def main_sequence(machine, orders):
-    # machine.print_tape("start")
     machine.head_read()
-    # machine.print_tape_with_position()
-    # print('\nstate:', machine.state)
     for order in orders:
         if machine.sequence(order) == 0:
             break
