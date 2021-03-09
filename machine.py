@@ -8,7 +8,7 @@ import time
 import subprocess
 
 
-# 読み書き用のテープを定義する．引数は，テープの初期状態．
+# 読み書き用のテープ
 class Tape():
     def __init__(self, input_tape):
         # 何も書き込まれていない部分を参照した場合，空白(' ')を返す（collectioins.defaultdictを参照）
@@ -18,7 +18,7 @@ class Tape():
             self.content[number] = character
 
 
-# ヘッドを定義する．引数は読み書きテープ．
+# ヘッド
 class Machine():
     def __init__(self, setted_tape):
         self.tape = setted_tape
@@ -46,7 +46,6 @@ class Machine():
     def change_state(self, next_state):
         self.state = next_state
 
-    # テープの状態とヘッドの位置を，出力用に整形する．
     def print_tape_with_position(self):
         self.tape.content[self.position]
         tape_list = sorted(self.tape.content.items(), key=lambda item: item[0])
@@ -60,32 +59,27 @@ class Machine():
         just = [item[1] for item in tape_list if item[0] == self.position][0]
         list_over = [item[1] for item in tape_list if item[0] > self.position]
 
-        # 各ステップに間合いをもたせる
         time.sleep(0.15)
-        # コンソールのクリア
         subprocess.run('clear')
 
         if len(list_less) == 0:
             return ' '.join(list_less) + '[' + just + ']' + ' '.join(list_over)
         else:
-            # ヘッドが左端に来たときに，テープの表示がずれてしまうを調整
+            # ヘッドが左端に来たときに，テープの表示がずれてしまうのを調整
             tape = ' ' + ' '.join(list_less) + '[' + just + ']'\
                    + ' '.join(list_over)
             return tape
 
-    # テープの状態とヘッドの位置，ヘッドの状態(state)を出力する．
     def print_tape(self):
         tape_result = self.print_tape_with_position()
         print(tape_result + '\n\nstate:' + self.state + '\033[2E')
 
-    # 命令に合わせて，一連の動き（テープの読み書き，ヘッドの移動・状態遷移，出力）を行う．
     def sequence(self, order):
         # ヘッドが受理状態ならば終了．
         if self.state == 'fin':
             print('Accept!')
             exit()
 
-        # 状態とテープの文字がともに一致する命令があれば，それを実行する．
         if (self.state, self.head_input) == (order.now, order.head_input):
             self.head_write(order.head_output)
             self.print_tape()
@@ -110,7 +104,6 @@ class Order():
         self.next = str(next)
 
 
-# 命令が書かれたファイルから，命令を読み取る
 def load_order(order_file):
     with open(order_file) as file:
         line = [((i[:-1]).split(',')) for i in file.readlines()]
@@ -123,7 +116,6 @@ def load_order(order_file):
 
 
 # 実行できる命令がなければ，'reject!'を返して停止する．
-# acceptされた場合の停止は，sequence()に記述されている．
 def main_sequence(machine, orders):
     machine.head_read()
     for order in orders:
@@ -156,7 +148,6 @@ if __name__ == "__main__":
         orders_file = sys.argv[2]
         main(tape, orders_file)
     else:
-        # 引数に過不足がある場合のエラーメッセージ
         print('----------------------------------------------------------')
         print('USAGE: python machine.py tape_strings orders_file')
         print('')
