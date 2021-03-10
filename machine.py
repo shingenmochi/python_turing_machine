@@ -1,6 +1,6 @@
 # machine.py
-# author: Ryosuke MATSUZAWA
 # チューリングマシンをシミュレートするプログラム．
+
 # 必要なモジュールの読み込み
 from collections import defaultdict
 import sys
